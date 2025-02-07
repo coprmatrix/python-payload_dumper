@@ -1,0 +1,26 @@
+<services>
+    <service name="obs_scm">
+        <param name="filename">payload_dumper</param>
+        <param name="url">https://github.com/huakim/payload-dumper.git</param>
+        <param name="scm">git</param>
+        <param name="revision">main</param>
+        <param name="changesgenerate">enable</param>
+        <param name="without-version">enable</param>
+    </service>
+    <service mode="buildtime" name="py_build">
+        <param name="source">payload_dumper</param>
+        <param name="wheel">disable</param>
+    </service>
+    <service name="extract_file" mode="buildtime">
+        <param name="archive">payload_dumper-*.tar.gz</param>
+        <param name="file">payload_dumper-*/PKG-INFO</param>
+    </service>
+    <service name="py2pack_generate" mode="buildtime">
+        <param name="name">payload_dumper</param>
+        <param name="localfile">PKG-INFO</param>
+    </service>
+    <service name="perl_regex" mode="buildtime">
+        <param name="file">*.spec</param>
+        <param name="regex">s/.*CHOOSE:.*//g ; s/pygobject/gobject/</param>
+    </service>
+</services>
