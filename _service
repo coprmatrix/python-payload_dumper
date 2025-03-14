@@ -11,13 +11,9 @@
         <param name="source">payload_dumper</param>
         <param name="wheel">disable</param>
     </service>
-    <service name="extract_file" mode="buildtime">
-        <param name="archive">payload_dumper-*.tar.gz</param>
-        <param name="file">payload_dumper-*/PKG-INFO</param>
-    </service>
     <service name="py2pack_generate" mode="buildtime">
         <param name="name">payload_dumper</param>
-        <param name="localfile">PKG-INFO</param>
+        <param name="localfile">*.tar.gz</param>
     </service>
     <service name="perl_regex" mode="buildtime">
         <param name="file">*.spec</param>
